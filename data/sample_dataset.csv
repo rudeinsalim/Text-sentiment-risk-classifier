@@ -1,7 +1,41 @@
 text,label
-"System update completed successfully without any errors.",safe
-"All services are operating normally and latency is low.",safe
-"Unauthorized root login attempt detected from IP 192.168.1.50.",risk
-"Critical vulnerability exploit payload injected into input field.",risk
-"Routine backup finished successfully.",safe
-"Malware signature matched in temporary system directory.",risk
+"System kernel updated to version 6.5.0-35-generic without errors.",low
+"User alice successfully authenticated via SSH key on port 22.",low
+"Scheduled cron job /usr/bin/certbot renew completed with exit code 0.",low
+"GET /api/v1/products?category=electronics HTTP/1.1 200 OK",low
+"Nginx service reloaded configuration successfully.",low
+"Backup routine to S3 bucket s3://prod-backups finished in 142 seconds.",low
+"User bob requested password reset link via self-service portal.",low
+"PostgreSQL database auto-vacuum process completed on table user_sessions.",low
+"DHCP server lease granted for device hostname desktop-mac-7741.",low
+"SSL certificate for domain enterprise-app.com renewed for 90 days.",low
+"User charlie attempted login 3 times with invalid password from IP 10.0.4.12.",medium
+"WARNING: Disk space utilization on /dev/sda1 reached 88%.",medium
+"Rate limit threshold exceeded for API client ID app_test_9921.",medium
+"Outdated TLS 1.0 protocol handshake attempted by client 198.51.100.42.",medium
+"Unrecognized user-agent string detected: 'CustomPythonScript/0.1'.",medium
+"Multiple failed sudo escalation attempts by user dev_temp on server web-02.",medium
+"Database query execution time exceeded 12000ms threshold: SELECT * FROM transactions;",medium
+"Port scan activity detected on interfaces eth0 (ports 21, 22, 80, 443, 3306).",medium
+"Memory usage spike detected: Node app instance peak at 92% heap limit.",medium
+"File permissions modified on /etc/hosts by non-root process PID 4102.",medium
+"CRITICAL: Multiple failed SSH logins for user 'root' from external IP 185.220.101.5.",high
+"WAF Block: SQL injection pattern detected 'UNION SELECT null, username, password FROM users--'.",high
+"Cross-Site Scripting (XSS) payload blocked in parameter comment_body: '<script>document.location=...</script>'.",high
+"Unusual outbound TCP connection established to known malicious C2 IP 198.51.100.99 on port 4444.",high
+"Directory traversal attempt intercepted: GET /../../../../etc/passwd HTTP/1.1",high
+"Powershell process launched with encoded command payload: -e JABzAD0ATgBlAHcALQBPAGIAagBlAGMA...",high
+"Unauthorized access attempt to confidential AWS S3 bucket s3://finance-payroll-records.",high
+"Brute force SSH alert: 150 failed password attempts in 60 seconds from IP 192.0.2.1.",high
+"Repeated HTTP 403 Forbidden responses triggered by automated scraping bot.",high
+"API Token leaked in URL parameter query string: ?access_token=eyJhbGciOiJIUzI1Ni...",high
+"EMERGENCY: Ransomware behavior pattern detected. Encrypted 500 files in /home/user within 5 seconds.",critical
+"Malware signature matched: Win32/Troj.Heuristic detected in uploaded attachment temp_invoice.exe.",critical
+"LSASS memory dump process initiated by unauthorized executable mimikatz.exe.",critical
+"Privilege escalation exploit (CVE-2024-1086) executed successfully on host node-01.",critical
+"Data exfiltration event: 4.2 GB compressed archive transferred via SCP to unknown external host.",critical
+"Shadow Copy deletion command executed: vssadmin delete shadows /all /quiet.",critical
+"Unauthorized domain admin account creation detected in Active Directory.",critical
+"Zero-day exploit buffer overflow payload detected targeting HTTP service worker.",critical
+"Ransom note generated on system desktop: READ_ME_FOR_DECRYPTION.txt.",critical
+"Persistence mechanisms created: Registry run key added pointing to malware binary in AppData.",critical

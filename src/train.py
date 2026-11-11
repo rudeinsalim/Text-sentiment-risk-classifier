@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = PROJECT_ROOT / "data" / "sample_dataset.csv"
 MODEL_DIR = PROJECT_ROOT / "models"
+LABELS = ("low", "medium", "high", "critical")
 
 def train_model():
     if not DATA_PATH.exists():
@@ -34,7 +35,13 @@ def train_model():
     #5. Evaluate the model
     print("Evaluating the model...")
     predictions = pipeline.predict(X_test)
-    print(classification_report(Y_test, predictions, zero_division=0))
+    print(classification_report(
+        Y_test,
+        predictions,
+        labels=LABELS,
+        target_names=LABELS,
+        zero_division=0,
+    ))
 
     #6. Save the trained model
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
