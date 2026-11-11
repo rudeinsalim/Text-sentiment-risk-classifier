@@ -1,18 +1,20 @@
-import os 
 import joblib
 import pandas as pd
+from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_PATH = PROJECT_ROOT / "data" / "sample_dataset.csv"
+MODEL_DIR = PROJECT_ROOT / "models"
+
 def train_model():
-    #1. Load the dataset
-    data = pd.read_csv('data/sample_dataset.csv')
-    if not os.path.exists(data_path):
-        raise FileNotFoundError(f"Dataset not found at {data_path}, please create it first.")
-    df = pd.read_csv(data_path)
+    if not DATA_PATH.exists():
+        raise FileNotFoundError(f"Dataset not found at {DATA_PATH}, please create it first.")
+    df = pd.read_csv(DATA_PATH)
     X = df['text']
     Y = df['label']
 
@@ -35,8 +37,8 @@ def train_model():
     print(classification_report(Y_test, predictions, zero_division=0))
 
     #6. Save the trained model
-    os.makedirs('models', exist_ok=True)
-    model_path = os.path.join("models","classifier.joblib")
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    model_path = MODEL_DIR / "classifier.joblib"
     joblib.dump(pipeline, model_path)
     print(f"Model saved to {model_path}")
 

@@ -1,20 +1,14 @@
 import os
 import joblib
+from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-#Initialize the FastAPI app
-app = FastAPI(
-    title="Text Risk & Sentiment Classifier API",
-    description="This API allows you to classify text data into risk and sentiment categories using a pre-trained machine learning model.",
-    version="1.0.0"
-)
-
-#Load the trained model on startup
-MODEL_PATH = os.path.join("models", "classifier.joblib")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+MODEL_PATH = PROJECT_ROOT / "models" / "classifier.joblib"
 model = None
 
-@app.on_event("startup")
 def load_model():
     global model
     if os.path.exists(MODEL_PATH):
@@ -23,9 +17,27 @@ def load_model():
     else:
         print(f"Model not found at {MODEL_PATH}. Please train the model first.")
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    load_model()
+    yield
+
+#Initialize the FastAPI app
+app = FastAPI(
+    title="Text Risk & Sentiment Classifier API",
+    description="This API allows you to classify text data into risk and sentiment categories using a pre-trained machine learning model.",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
 #Define pydantic request schema
 class PredictRequest(BaseModel):
-    text: str = Field(..., example="Unauthorized access attempt detected in the system logs.")
+    text: str = Field(
+        ...,
+        json_schema_extra={
+            "example": "Unauthorized access attempt detected in the system logs."
+        }
+    )
 
 #Define pydantic response schema
 class PredictResponse(BaseModel):
