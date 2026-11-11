@@ -1,0 +1,7 @@
+text,label
+"System update completed successfully without any errors.",safe
+"All services are operating normally and latency is low.",safe
+"Unauthorized root login attempt detected from IP 192.168.1.50.",risk
+"Critical vulnerability exploit payload injected into input field.",risk
+"Routine backup finished successfully.",safe
+"Malware signature matched in temporary system directory.",risk
