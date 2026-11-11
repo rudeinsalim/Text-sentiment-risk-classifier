@@ -20,7 +20,13 @@ def train_model():
     Y = df['label']
 
     #2. Split the dataset into training and testing sets
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+    X_train, X_test, Y_train, Y_test = train_test_split(
+        X,
+        Y,
+        test_size=0.2,
+        random_state=42,
+        stratify=Y,
+    )
 
     #3. Create a pipeline with TfidfVectorizer and LogisticRegression
     pipeline = Pipeline([
@@ -43,7 +49,10 @@ def train_model():
         zero_division=0,
     ))
 
-    #6. Save the trained model
+    #6. Retrain on all available data before saving the deployment model
+    pipeline.fit(X, Y)
+
+    #7. Save the trained model
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     model_path = MODEL_DIR / "classifier.joblib"
     joblib.dump(pipeline, model_path)
