@@ -2,6 +2,10 @@
 
 This project is a small machine learning app that classifies short text into a risk level such as low, medium, high, or critical. It is designed for messages like security alerts, system warnings, login issues, and unusual operational events.
 
+## App snapshot
+
+![Text Risk Classifier UI](./assets/text-risk-classifier-ui.png)
+
 ## Project architecture
 The project has three main parts:
 - `data/sample_dataset.csv`: sample labeled text data
